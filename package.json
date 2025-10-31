@@ -1,0 +1,47 @@
+{
+  "name": "@cuey/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript client library for the Cuey REST API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "bun run build",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "cuey",
+    "api",
+    "client",
+    "typescript",
+    "webhooks",
+    "cron",
+    "scheduler"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timurkramar/cuey-ts.git"
+  }
+}

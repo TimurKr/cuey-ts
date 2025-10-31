@@ -1,0 +1,10 @@
+src/
+tsconfig.json
+*.tsbuildinfo
+node_modules/
+.env
+.env.local
+*.log
+.DS_Store
+.cursor/
+.vscode/
