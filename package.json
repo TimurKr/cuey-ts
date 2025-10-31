@@ -1,6 +1,6 @@
 {
   "name": "cuey",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript client library for the Cuey REST API",
   "type": "module",
   "main": "./dist/index.js",
@@ -17,6 +17,7 @@
   "scripts": {
     "build": "tsc",
     "type-check": "tsc --noEmit",
+    "test": "echo \"No tests yet\" && exit 0",
     "prepublishOnly": "bun run build",
     "format": "prettier --write ."
   },
@@ -42,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/timurkramar/cuey-ts.git"
+    "url": "git+https://github.com/TimurKr/cuey-ts"
   }
 }
