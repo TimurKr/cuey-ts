@@ -21,14 +21,14 @@ export class EventsResource extends BaseResource {
    * List all events with optional pagination and filters
    *
    * @param params - Query parameters for filtering and pagination
-   * @param params.page - Page number (0-indexed), defaults to 0
+   * @param params.page - Page number (0-indexed), defaults to 0. Specifying a page number that is out of range will throw an InternalServerError.
    * @param params.limit - Number of items per page (1-1000), defaults to 100
    * @param params.status - Filter by event status (pending, processing, success, failed)
    * @param params.cron_id - Filter by cron job ID
    * @returns Promise resolving to paginated list of events
    * @throws {UnauthorizedError} When API key is invalid or missing
    * @throws {BadRequestError} When query parameters are invalid
-   * @throws {InternalServerError} When a server error occurs
+   * @throws {InternalServerError} When a server error occurs, including when the specified page number is out of range
    */
   async list(
     params?: EventsQueryParams,

@@ -70,6 +70,8 @@ jobs:
         run: bun install
 
       - name: Run tests
+        env:
+          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: bun test
 
       - name: Type check

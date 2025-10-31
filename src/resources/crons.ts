@@ -21,13 +21,13 @@ export class CronsResource extends BaseResource {
    * List all cron jobs with optional pagination and filters
    *
    * @param params - Query parameters for filtering and pagination
-   * @param params.page - Page number (0-indexed), defaults to 0
+   * @param params.page - Page number (0-indexed), defaults to 0. Specifying a page number that is out of range will throw an InternalServerError.
    * @param params.limit - Number of items per page (1-1000), defaults to 100
    * @param params.is_active - Filter by active status (true/false)
    * @returns Promise resolving to paginated list of cron jobs
    * @throws {UnauthorizedError} When API key is invalid or missing
    * @throws {BadRequestError} When query parameters are invalid
-   * @throws {InternalServerError} When a server error occurs
+   * @throws {InternalServerError} When a server error occurs, including when the specified page number is out of range
    */
   async list(
     params?: CronsQueryParams,

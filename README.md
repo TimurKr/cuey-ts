@@ -127,13 +127,15 @@ const cron = await client.repeat({
 
 ```typescript
 const { data, pagination } = await client.crons.list({
-  page?: number;        // Default: 0
+  page?: number;        // Default: 0. Specifying an out of range page number will throw InternalServerError
   limit?: number;       // Default: 100
   is_active?: boolean;  // Filter by active status
 });
 ```
 
 Returns a paginated list of cron jobs with `data` (array of `Cron`) and `pagination` metadata.
+
+**Note:** Requesting a page number that is out of range (e.g., page 100 when only 10 pages exist) will throw an `InternalServerError`.
 
 #### Get Cron
 
@@ -189,7 +191,7 @@ await client.crons.delete(id: string);
 
 ```typescript
 const { data, pagination } = await client.events.list({
-  page?: number;        // Default: 0
+  page?: number;        // Default: 0. Specifying an out of range page number will throw InternalServerError
   limit?: number;       // Default: 100
   status?: 'pending' | 'processing' | 'success' | 'failed';
   cron_id?: string;     // Filter by cron ID
@@ -197,6 +199,8 @@ const { data, pagination } = await client.events.list({
 ```
 
 Returns a paginated list of events with `data` (array of `Event`) and `pagination` metadata.
+
+**Note:** Requesting a page number that is out of range (e.g., page 100 when only 10 pages exist) will throw an `InternalServerError`.
 
 #### Get Event
 
@@ -431,6 +435,33 @@ await cuey.crons.update("cron-id-here", {
 ## API Base URL
 
 The SDK uses `https://cuey.dev` as the API base URL. This is configured internally and cannot be changed.
+
+## Testing
+
+The test suite uses Bun's built-in test runner and requires a valid API key to run.
+
+### Running Tests Locally
+
+1. **Set up your API key:**
+   - Create a `.env.local` file in the project root (or copy `.env.example`)
+   - Add your API key:
+     ```bash
+     TEST_API_KEY=your-api-key-here
+     ```
+   - To get an API key:
+     - Create an account at [https://cuey.dev/dashboard](https://cuey.dev/dashboard)
+     - Create a team
+     - Generate an API key from your team settings
+
+2. **Run the tests:**
+
+   ```bash
+   bun test
+   ```
+
+### CI/CD
+
+Tests in CI/CD use GitHub Secrets to provide the `TEST_API_KEY` environment variable securely. The test account and API key are managed separately for security.
 
 ## License
 

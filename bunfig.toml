@@ -1,0 +1,6 @@
+# Bun configuration for tests
+# This file configures Bun to handle server-only module mocking
+
+[test]
+# Preload script to mock server-only
+preload = ["./test/setup-bun.ts"]
