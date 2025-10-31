@@ -1,11 +1,11 @@
-# @cuey/sdk
+# cuey
 
 TypeScript client library for the Cuey REST API. This package provides a type-safe, object-based interface for scheduling webhooks and managing cron jobs.
 
 ## Installation
 
 ```bash
-npm install @cuey/sdk
+npm install cuey
 ```
 
 ## Quick Start
@@ -15,7 +15,7 @@ npm install @cuey/sdk
 The easiest way to get started is using the default `cuey` instance, which automatically reads configuration from environment variables:
 
 ```typescript
-import { cuey } from "@cuey/sdk";
+import { cuey } from "cuey";
 
 // Schedule a one-time event
 const event = await cuey.schedule({
@@ -44,7 +44,7 @@ Make sure to set the following environment variables:
 You can also create a custom `Cuey` instance with explicit configuration:
 
 ```typescript
-import { Cuey } from "@cuey/sdk";
+import { Cuey } from "cuey";
 
 const client = new Cuey({
   baseUrl: "https://example.com",
@@ -277,7 +277,7 @@ import {
   BadRequestError,
   ValidationError,
   InternalServerError,
-} from "@cuey/sdk";
+} from "cuey";
 
 try {
   const cron = await client.crons.get("invalid-id");
@@ -320,10 +320,10 @@ import type {
   CronsQueryParams,
   EventsQueryParams,
   CueyConfig,
-} from "@cuey/sdk";
+} from "cuey";
 
 // Also export the Cuey class and default instance
-import { Cuey, cuey } from "@cuey/sdk";
+import { Cuey, cuey } from "cuey";
 ```
 
 ## Examples
@@ -331,7 +331,7 @@ import { Cuey, cuey } from "@cuey/sdk";
 ### Scheduling a One-Time Event
 
 ```typescript
-import { cuey } from "@cuey/sdk";
+import { cuey } from "cuey";
 
 const event = await cuey.schedule({
   webhook_url: "https://api.example.com/webhook",
@@ -358,7 +358,7 @@ console.log("Event scheduled:", event.id);
 ### Creating a Cron Job
 
 ```typescript
-import { Cuey } from "@cuey/sdk";
+import { Cuey } from "cuey";
 
 const client = new Cuey({
   apiKey: process.env.CUEY_API_KEY,
@@ -383,7 +383,7 @@ console.log("Cron created:", cron.id);
 ### Listing and Filtering Events
 
 ```typescript
-import { cuey } from "@cuey/sdk";
+import { cuey } from "cuey";
 
 // List failed events
 const { data: failedEvents } = await cuey.events.list({
@@ -404,7 +404,7 @@ const { data: cronEvents } = await cuey.events.list({
 ### Updating a Cron Job
 
 ```typescript
-import { cuey } from "@cuey/sdk";
+import { cuey } from "cuey";
 
 // Update cron to run every 30 minutes instead
 await cuey.crons.update("cron-id-here", {

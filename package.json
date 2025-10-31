@@ -1,5 +1,5 @@
 {
-  "name": "@cuey/sdk",
+  "name": "cuey",
   "version": "0.1.0",
   "description": "TypeScript client library for the Cuey REST API",
   "type": "module",

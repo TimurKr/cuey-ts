@@ -62,7 +62,7 @@ export class Cuey {
    * });
    *
    * // Using only environment variables (or default instance)
-   * import { cuey } from '@cuey/sdk';
+   * import { cuey } from 'cuey';
    * await cuey.schedule({ ... });
    * ```
    */
@@ -159,7 +159,7 @@ export class Cuey {
  *
  * @example
  * ```typescript
- * import { cuey } from '@cuey/sdk';
+ * import { cuey } from 'cuey';
  *
  * // Uses CUEY_API_KEY and CUEY_BASE_URL from environment
  * await cuey.schedule({
