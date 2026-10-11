@@ -19,15 +19,15 @@ import { cuey } from "cuey";
 
 // Schedule a one-time event
 const event = await cuey.schedule({
-  webhook_url: "/webhook",
+  webhook_url: "https://your.app/api/webhook",
   method: "POST",
-  scheduled_at: "2024-12-31T00:00:00Z",
+  scheduled_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
   payload: { message: "Hello, world!" },
 });
 
 // Create a cron job that runs daily
 const cron = await cuey.repeat({
-  webhook_url: "/daily-report",
+  webhook_url: "https://your.app/api/daily-report",
   method: "POST",
   cron_expression: "0 0 * * *",
   is_active: true,
@@ -57,6 +57,12 @@ const { data, pagination } = await client.crons.list({ page: 0, limit: 10 });
 // Get a single event
 const event = await client.events.get("event-id");
 ```
+
+## Let users choose their schedules
+
+Copy the [provider-independent React schedule picker](examples/schedule-picker) into your app. It converts daily, weekday, and weekly controls into a cron expression and IANA timezone. The component does not require a Cuey account.
+
+[Preview a cron expression](https://cuey.dev/tools/cron) · [User-defined schedules guide](https://cuey.dev/guides/user-defined-schedules) · [Schedule Next.js emails with Resend](https://cuey.dev/guides/nextjs-scheduled-emails)
 
 ## Configuration
 
@@ -95,7 +101,7 @@ Schedule an event for future execution. Alias for `client.events.create()`.
 const event = await client.schedule({
   webhook_url: "https://example.com/webhook",
   method: "POST",
-  scheduled_at: "2024-12-31T00:00:00Z",
+  scheduled_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
   headers: { "X-Custom-Header": "value" },
   payload: { data: "value" },
   retry_config: {
@@ -265,7 +271,7 @@ Webhook URLs can be provided in two formats:
    await client.schedule({
      webhook_url: "/webhook", // Resolves to https://example.com/webhook
      method: "POST",
-     scheduled_at: "2024-12-31T00:00:00Z",
+     scheduled_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
    });
    ```
 
@@ -340,7 +346,7 @@ import { cuey } from "cuey";
 const event = await cuey.schedule({
   webhook_url: "https://api.example.com/webhook",
   method: "POST",
-  scheduled_at: "2024-12-31T23:59:59Z",
+  scheduled_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
   headers: {
     Authorization: "Bearer token",
     "Content-Type": "application/json",
