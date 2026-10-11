@@ -172,6 +172,8 @@ const cron = await client.crons.create({
 
 #### Update Cron
 
+Updates replace the delivery configuration. Include headers, payload, retry configuration, timezone, and intended active state on each update when you want to retain them.
+
 ```typescript
 const cron = await client.crons.update(id: string, {
   webhook_url: string;
